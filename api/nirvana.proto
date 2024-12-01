@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package control;
+
+option go_package = "pkg/api/nirvana;nirvana";
+
+service Nirvana {
+  rpc CreateException(CreateExceptionRequest) returns(CreateExceptionResponse) {}
+
+  rpc CheckException(CheckExceptionRequest) returns(CheckExceptionResponse) {}
+}
+
+message CreateExceptionRequest {
+  string name = 1;
+
+  ExceptionAttributes attributes = 2;
+}
+
+message CreateExceptionResponse {}
+
+message CheckExceptionRequest {
+  string name = 1;
+
+  ExceptionAttributes attributes = 2;
+}
+
+message CheckExceptionResponse {
+  bool found = 1;
+}
+
+message ExceptionAttributes {
+  optional string client_id = 1;
+
+  optional int64 amount = 2;
+}
